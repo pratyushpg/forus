@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Shreya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-pink: #ffafbd;
+            --rose-pink: #ffc3a0;
+            --heart-red: #ff4b2b;
+            --dark-pink: #e91e63;
+            --gold: #ffd700;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-pink), var(--rose-pink));
+        }
+
+        #main-container, #celebration, #motivation {
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+            width: 100%;
+            max-width: 600px;
+            transition: all 0.8s ease-in-out;
+        }
+
+        .hidden { display: none !important; opacity: 0; transform: translateY(20px); }
+
+        /* Animations */
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes floatUp { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 100% { transform: translateY(-10vh) scale(1.5); opacity: 0; } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes glow { 0% { text-shadow: 0 0 5px #fff; } 50% { text-shadow: 0 0 20px var(--gold); } 100% { text-shadow: 0 0 5px #fff; } }
+
+        .bear-emoji { font-size: 80px; animation: bounce 2s infinite ease-in-out; display: inline-block; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--dark-pink); margin-bottom: 10px; }
+        .subtitle { font-style: italic; color: #6d4c41; margin-bottom: 40px; }
+
+        /* Buttons */
+        .btn-container { display: flex; justify-content: center; align-items: center; gap: 40px; height: 100px; }
+        #yes-btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white; border: none; padding: 15px 40px; font-size: 1.5rem; font-weight: 600;
+            border-radius: 50px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 75, 43, 0.3);
+        }
+        #no-btn { background: white; color: var(--heart-red); border: 2px solid var(--heart-red); padding: 10px 25px; border-radius: 50px; cursor: pointer; z-index: 100; }
+
+        /* Motivation Page Specifics */
+        .motivation-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease-out;
+        }
+        .bank-badge { font-size: 50px; margin-bottom: 15px; display: block; filter: drop-shadow(0 0 10px var(--gold)); }
+        .highlight { color: #d81b60; font-weight: 600; animation: glow 2s infinite; }
+        
+        .next-step-btn {
+            margin-top: 30px;
+            background: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: var(--dark-pink);
+            cursor: pointer;
+        }
+
+        .heart { position: absolute; bottom: -50px; color: rgba(255, 255, 255, 0.6); pointer-events: none; }
+    </style>
+</head>
+<body>
+
+    <div id="main-container">
+        <div class="bear-emoji">🧸</div>
+        <h1>Will You Be My Valentine, Shreya?</h1>
+        <p class="subtitle">I’ve spent a thousand moments thinking of the right words, but all I know is that life is better with you in it.</p>
+        <div class="btn-container">
+            <button id="yes-btn" onclick="showCelebration()">Yes</button>
+            <button id="no-btn" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.9rem; color: #a35b6f;">Every love story is beautiful, but ours is my favourite</p>
+    </div>
+
+    <div id="celebration" class="hidden">
+        <h1 style="font-size: 5rem; animation: pulse 0.5s infinite;">Yayyyy!!</h1>
+        <div style="font-size: 100px;">🥰</div>
+        <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #d81b60;">I knew you'd say yes...</h2>
+        <button class="next-step-btn" onclick="showMotivation()">Click for a surprise ❤️</button>
+    </div>
+
+    <div id="motivation" class="hidden">
+        <div class="motivation-card">
+            <span class="bank-badge">🏦✨</span>
+            <h2 style="margin-bottom: 20px; color: #4a148c;">To My Future Bank Officer</h2>
+            <p style="line-height: 1.8; font-size: 1.1rem;">
+                Shreya, I know you will become a <span class="highlight">Bank Officer</span> one day. 
+                I believe in your dreams as much as I believe in us. 
+                <br><br>
+                I know you will achieve <b>everything</b> you want in life, 
+                and no matter how hard the journey gets, 
+                <span class="highlight">you will always have my support</span> right by your side.
+                <br><br>
+                I'm your #1 fan, today and forever. 💼❤️
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Floating Hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            heart.style.animation = `floatUp ${Math.random() * 3 + 3}s linear forwards`;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+        let heartInterval = setInterval(createHeart, 400);
+
+        // Runaway Button
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        function moveNoButton() {
+            const yesRect = yesBtn.getBoundingClientRect();
+            let x, y;
+            do {
+                x = Math.random() * (window.innerWidth - 150);
+                y = Math.random() * (window.innerHeight - 100);
+            } while (Math.abs(x - yesRect.left) < 150 && Math.abs(y - yesRect.top) < 100);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+            noBtn.innerText = "Try again! 😉";
+        }
+
+        // Navigation Logic
+        function showCelebration() {
+            document.getElementById('main-container').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('main-container').style.display = 'none';
+                document.getElementById('celebration').classList.remove('hidden');
+                createConfetti();
+            }, 500);
+        }
+
+        function showMotivation() {
+            document.getElementById('celebration').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('celebration').style.display = 'none';
+                document.getElementById('motivation').classList.remove('hidden');
+                // Speed up hearts for the final page
+                clearInterval(heartInterval);
+                heartInterval = setInterval(createHeart, 200);
+            }, 500);
+        }
+
+        function createConfetti() {
+            for(let i=0; i<100; i++) {
+                const conf = document.createElement('div');
+                conf.style.cssText = `position:fixed; width:10px; height:10px; background:${['#ff4b2b','#ffeb3b','#4caf50','#2196f3'][Math.floor(Math.random()*4)]}; left:50%; top:50%; z-index:1000; border-radius:50%;`;
+                document.body.appendChild(conf);
+                const destX = (Math.random()-0.5)*1000;
+                const destY = (Math.random()-0.5)*1000;
+                conf.animate([{transform:'translate(0,0)', opacity:1},{transform:`translate(${destX}px,${destY}px)`, opacity:0}], {duration:3000, easing:'ease-out'}).onfinish = () => conf.remove();
+            }
+        }
+    </script>
+</body>
+</html>
